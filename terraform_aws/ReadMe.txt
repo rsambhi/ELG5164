@@ -37,9 +37,9 @@ ubuntu@sambhi-linux:~/terraform_aws$ aws sts get-caller-identity
 }
 
 
-Above 4 steps will ensure that your aws account has been setup properly. (Somethign similar till the "az login" step of Microsoft Azure)
+Above 4 steps will ensure that your aws account has been setup properly. (Something similar to the "az login" step of Microsoft Azure)
 
-5. Next, Create a key with following command on your azure vm: (like we create a ssh key pair)
+5. Next, Create a key with following command on your azure vm: (like we create a ssh key pair, Already added a key in code directory)
 aws ec2 create-key-pair --key-name tf_key --query 'KeyMaterial' --output text > tf_key.pem
 
 6. Next will be regular steps (i.e terraform init/plan/apply with terraform files containing aws syntax)
