@@ -31,9 +31,9 @@ ubuntu@sambhi-linux:~/terraform_aws$
 
 ubuntu@sambhi-linux:~/terraform_aws$ aws sts get-caller-identity
 {
-    "UserId": "AIDAYSPYNASIRRBR5DMSM",
-    "Account": "589468337297",
-    "Arn": "arn:aws:iam::589468337297:user/student"
+    "UserId": "ABDCYDPENASIZRBR5DMMM",
+    "Account": "123456787890",
+    "Arn": "arn:aws:iam::123456787890:user/student"
 }
 
 
