@@ -10,12 +10,11 @@ https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#cl
 
 ####Snippet of commands which I used to install aws:
 ubuntu@sambhi-linux:~/terraform_aws$ history | grep -i aws
-  302  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-  304  unzip awscliv2.zip
-  306  cd aws/
-  309  sudo ./aws/install 
-  310  which aws
-  311  aws --version
+  301  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  302  unzip awscliv2.zip
+  303  sudo ./aws/install 
+  304  which aws
+  305  aws --version
 
 
 3. Run "aws configure" on azure ubuntu vm:
