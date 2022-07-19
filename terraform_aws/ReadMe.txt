@@ -47,3 +47,42 @@ aws ec2 create-key-pair --key-name tf_key --query 'KeyMaterial' --output text > 
 
 References:
 https://learn.hashicorp.com/tutorials/terraform/aws-variables?in=terraform/aws-get-started
+
+
+Troubleshooting:
+----------------
+IF you see an issue while login with ssh key "tf_key.pem" as follows:
+
+student@ubuntu-host2:~/ELG5164/terraform_aws$ ssh -i tf_key.pem ec2-user@ec2-3-20-226-15.us-east-2.compute.amazonaws.com
+The authenticity of host 'ec2-3-20-226-15.us-east-2.compute.amazonaws.com (3.20.226.15)' can't be established.
+ECDSA key fingerprint is SHA256:5DvJ1GZL7ldPd5C+XXMa665sRYewFvP20NwFcuXNdVs.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-3-20-226-15.us-east-2.compute.amazonaws.com,3.20.226.15' (ECDSA) to the list of known hosts.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0664 for 'tf_key.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "tf_key.pem": bad permissions
+ec2-user@ec2-3-20-226-15.us-east-2.compute.amazonaws.com: Permission denied (publickey).
+student@ubuntu-host2:~/ELG5164/terraform_aws$
+
+
+
+THEN change the permissions of tf_key.pem file to 400 as follows:
+
+
+student@ubuntu-host2:~/ELG5164/terraform_aws$ chmod 400 tf_key.pem 
+student@ubuntu-host2:~/ELG5164/terraform_aws$ ssh -i tf_key.pem ec2-user@ec2-3-20-226-15.us-east-2.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+4 package(s) needed for security, out of 6 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-16-0-204 ~]$ 
+[ec2-user@ip-172-16-0-204 ~]$ 
+
