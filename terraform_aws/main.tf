@@ -109,6 +109,14 @@ resource "aws_instance" "ecnode1" {
   }
 }
 
+# Generate inventory file
+resource "local_file" "inventory" {
+  filename = "./hosts"
+  content = <<EOF
+[webserver]
+${aws_instance.ecnode1.public_ip} ansible_connection=ssh   ansible_user=${var.ssh_user} ansible_ssh_private_key_file=${var.private_key_path}
+EOF
+}
 
 ################################
 # DATA

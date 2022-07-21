@@ -10,6 +10,12 @@ variable "aws_secret_key" {
   default     = "VMesYqgi+pmNpwsaViQfqso8bXuBjw1W5N8l0TYx"
 }
 
+variable "ssh_user" {
+  description = "ssh user"
+  type        = string
+  default     = "ec2-user"
+}
+
 variable "ssh_key_name" {
   description = "ssh key name"
   type        = string
