@@ -1,0 +1,11 @@
+---
+
+- name: Configure web server with Nginx
+  hosts: web # Only running against web-server
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        update_cache: true
