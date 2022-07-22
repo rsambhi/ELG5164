@@ -85,3 +85,7 @@ Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-16-0-204 ~]$ 
 [ec2-user@ip-172-16-0-204 ~]$ 
 
+
+Exit the vm.
+
+student@ubuntu-host2:~/ELG5164/terraform_aws$ ansible-playbook nginx.yml -i ./hosts 
