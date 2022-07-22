@@ -88,4 +88,6 @@ Run "sudo yum update" to apply all updates.
 
 Exit the vm.
 
+*** Installing the nginx server on the vm ***
+
 student@ubuntu-host2:~/ELG5164/terraform_aws$ ansible-playbook nginx.yml -i ./hosts 
