@@ -1,15 +1,3 @@
-variable "aws_access_key" {
-  description = "AWS access key"
-  type        = string
-  default     = "AKIAYSPYNASI54JHXL3C"
-}
-
-variable "aws_secret_key" {
-  description = "AWS secret key"
-  type        = string
-  default     = "VMesYqgi+pmNpwsaViQfqso8bXuBjw1W5N8l0TYx"
-}
-
 variable "ssh_user" {
   description = "ssh user"
   type        = string
