@@ -38,10 +38,29 @@ ubuntu@sambhi-linux:~/terraform_aws$ aws sts get-caller-identity
 
 Above 4 steps will ensure that your aws account has been setup properly. (Something similar to the "az login" step of Microsoft Azure)
 
-5. Next, Create a key with following command on your azure vm: (like we create a ssh key pair, Already added a key in code directory)
-aws ec2 create-key-pair --key-name tf_key --query 'KeyMaterial' --output text > tf_key.pem
+5. Next will be regular steps (i.e terraform init/plan/apply with terraform files containing aws syntax)
 
-6. Next will be regular steps (i.e terraform init/plan/apply with terraform files containing aws syntax)
+
+6. After terraform apply, 2 files (hosts and tf_key.pem) are created:
+
+- hosts (ansible inventory file)
+- tf_key.pem (ssh private key)
+
+
+7. Change the permissions of the tf_key.pem file to 400 before ssh to AWS instance:
+chmod 400 tf_key.pem
+
+
+8. ssh to aws instance: 
+ssh -i tf_key.pem ec2-user@<aws-instance-public-ip>
+
+
+9. Install nginx using ansible playbook:
+ansible-playbook nginx.yml -i ./hosts
+
+
+10. Check http server is running on AWS instance:
+curl <aws-instance-public-ip>
 
 
 References:
@@ -89,5 +108,3 @@ Run "sudo yum update" to apply all updates.
 Exit the vm.
 
 *** Installing the nginx server on the vm ***
-
-student@ubuntu-host2:~/ELG5164/terraform_aws$ ansible-playbook nginx.yml -i ./hosts 
