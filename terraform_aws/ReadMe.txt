@@ -38,6 +38,7 @@ ubuntu@sambhi-linux:~/terraform_aws$ aws sts get-caller-identity
 
 Above 4 steps will ensure that your aws account has been setup properly. (Something similar to the "az login" step of Microsoft Azure)
 
+
 5. Next will be regular steps (i.e terraform init/plan/apply with terraform files containing aws syntax)
 
 
@@ -69,7 +70,7 @@ https://learn.hashicorp.com/tutorials/terraform/aws-variables?in=terraform/aws-g
 
 Troubleshooting:
 ----------------
-IF you see an issue while login with ssh key "tf_key.pem" as follows:
+- IF you see an issue while login with ssh key "tf_key.pem" as follows:
 
 student@ubuntu-host2:~/ELG5164/terraform_aws$ ssh -i tf_key.pem ec2-user@ec2-3-20-226-15.us-east-2.compute.amazonaws.com
 The authenticity of host 'ec2-3-20-226-15.us-east-2.compute.amazonaws.com (3.20.226.15)' can't be established.
@@ -88,8 +89,7 @@ student@ubuntu-host2:~/ELG5164/terraform_aws$
 
 
 
-THEN change the permissions of tf_key.pem file to 400 as follows:
-
+- THEN change the permissions of tf_key.pem file to 400 as follows:
 
 student@ubuntu-host2:~/ELG5164/terraform_aws$ chmod 400 tf_key.pem 
 student@ubuntu-host2:~/ELG5164/terraform_aws$ ssh -i tf_key.pem ec2-user@ec2-3-20-226-15.us-east-2.compute.amazonaws.com
@@ -102,9 +102,4 @@ https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
 4 package(s) needed for security, out of 6 available
 Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-16-0-204 ~]$ 
-[ec2-user@ip-172-16-0-204 ~]$ 
 
-
-Exit the vm.
-
-*** Installing the nginx server on the vm ***
