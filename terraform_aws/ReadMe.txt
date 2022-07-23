@@ -5,6 +5,8 @@ https://589468337297.signin.aws.amazon.com/console
 userid : student
 password: same as azure vm
 
+Note: Save the student account access_key and secret_key as those keyes will be used in step 3 (aws configure).
+
 
 2. Install AWS CLI on your Azure ubuntu VM:
 
