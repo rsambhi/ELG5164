@@ -70,6 +70,7 @@ resource "tls_private_key" "rsa" {
 resource "local_file" "tf_key" {
   content  = tls_private_key.rsa.private_key_pem
   filename = "tf_key.pem"
+  file_permission = "0400"
 }
 
 
