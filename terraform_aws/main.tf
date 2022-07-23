@@ -1,6 +1,4 @@
-################################
 # Terraform Block
-################################
 terraform {
   required_providers {
     aws = {
@@ -12,18 +10,14 @@ terraform {
   required_version = ">= 1.2.0"
 }
 
-################################
-# PROVIDERS
-################################
+# Providers
 provider "aws" {
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
   region     = var.region
 }
 
-################################
 # RESOURCES
-################################
 
 # VPC
 resource "aws_vpc" "vpc1" {
@@ -39,12 +33,12 @@ resource "aws_subnet" "subnet1" {
   availability_zone       = data.aws_availability_zones.available.names[1]
 }
 
-# INTERNET_GATEWAY
+# Internet gateway
 resource "aws_internet_gateway" "gateway1" {
   vpc_id = aws_vpc.vpc1.id
 }
 
-# ROUTE_TABLE
+# Route table
 resource "aws_route_table" "route_table1" {
   vpc_id = aws_vpc.vpc1.id
 
@@ -54,12 +48,32 @@ resource "aws_route_table" "route_table1" {
   }
 }
 
+# Subnet
 resource "aws_route_table_association" "route-subnet1" {
   subnet_id      = aws_subnet.subnet1.id
   route_table_id = aws_route_table.route_table1.id
 }
 
-# SECURITY_GROUP
+# AWS key pair
+resource "aws_key_pair" "tf_key" {
+  key_name   = "tf_key"
+  public_key = tls_private_key.rsa.public_key_openssh
+}
+
+# RSA key of size 4096 bits
+resource "tls_private_key" "rsa" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+# Private key file
+resource "local_file" "tf_key" {
+  content  = tls_private_key.rsa.private_key_pem
+  filename = "tf_key.pem"
+}
+
+
+# Security group
 resource "aws_security_group" "sg-ecnode-instance" {
   name   = "ecnode_sg"
   vpc_id = aws_vpc.vpc1.id
@@ -93,7 +107,7 @@ resource "aws_security_group" "sg-ecnode-instance" {
   }
 }
 
-# INSTANCE
+# AWS instance
 resource "aws_instance" "ecnode1" {
   ami                    = data.aws_ami.aws-linux.id
   instance_type          = "t2.micro"
@@ -109,7 +123,7 @@ resource "aws_instance" "ecnode1" {
   }
 }
 
-# Generate inventory file
+# Ansible inventory file
 resource "local_file" "inventory" {
   filename = "./hosts"
   content = <<EOF
@@ -118,9 +132,7 @@ ${aws_instance.ecnode1.public_ip} ansible_connection=ssh   ansible_user=${var.ss
 EOF
 }
 
-################################
-# DATA
-################################
+# Data
 data "aws_availability_zones" "available" {
   state = "available"
 }
@@ -145,9 +157,7 @@ data "aws_ami" "aws-linux" {
   }
 }
 
-################################
-# OUTPUT
-################################
+# Output
 output "instance-dns" {
   value = aws_instance.ecnode1.public_dns
 }
