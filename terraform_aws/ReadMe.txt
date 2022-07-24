@@ -68,5 +68,5 @@ curl <aws-instance-public-ip>
 
 
 References:
-https://learn.hashicorp.com/tutorials/terraform/aws-variables?in=terraform/aws-get-started
+https://learn.hashicorp.com/collections/terraform/aws-get-started
 
