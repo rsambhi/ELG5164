@@ -1,6 +1,7 @@
+# This playbook will enable epel repository, install nginx, and then start nginx. 
+
 ---
-- name: Install nginx
-  hosts: webserver
+- hosts: webserver
   become: true
 
   tasks:

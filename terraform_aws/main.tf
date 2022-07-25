@@ -12,7 +12,7 @@ terraform {
 
 # Providers
 provider "aws" {
-  region     = var.region
+  region = var.region
 }
 
 # RESOURCES
@@ -66,8 +66,8 @@ resource "tls_private_key" "rsa" {
 
 # Private key file
 resource "local_file" "tf_key" {
-  content  = tls_private_key.rsa.private_key_pem
-  filename = "tf_key.pem"
+  content         = tls_private_key.rsa.private_key_pem
+  filename        = "tf_key.pem"
   file_permission = "0400"
 }
 
@@ -125,7 +125,7 @@ resource "aws_instance" "ecnode1" {
 # Ansible inventory file
 resource "local_file" "inventory" {
   filename = "./hosts"
-  content = <<EOF
+  content  = <<EOF
 [webserver]
 ${aws_instance.ecnode1.public_ip} ansible_connection=ssh   ansible_user=${var.ssh_user} ansible_ssh_private_key_file=${var.private_key_path}
 EOF
