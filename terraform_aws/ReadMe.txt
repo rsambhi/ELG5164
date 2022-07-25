@@ -12,7 +12,7 @@ Note: Save the student account access_key and secret_key as those keyes will be 
 
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#cliv2-linux-install
 
-####Snippet of commands which I used to install aws:
+####Snippet of commands which we used to install aws:
 ubuntu@sambhi-linux:~/terraform_aws$ history | grep -i aws
   301  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
   302  unzip awscliv2.zip
@@ -65,6 +65,10 @@ ansible-playbook nginx.yml -i ./hosts
 9. Check http server is running on AWS instance:
 
 curl <aws-instance-public-ip>
+
+Or
+
+http://<aws-instance-public-ip> in a web browser.
 
 
 References:
